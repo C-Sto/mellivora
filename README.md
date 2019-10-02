@@ -1,6 +1,8 @@
 WACTF Mellivora
 =========
 
+✌✌ THIS REPO IS PUBLIC 🔐🔐
+
 A WACTFified Mellivora
 
 - WACTF theme

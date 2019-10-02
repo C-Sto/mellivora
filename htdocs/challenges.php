@@ -123,7 +123,7 @@ $challenges = db_query_fetch_all('
     WHERE
        c.category = :category AND
        c.exposed = 1
-    ORDER BY CAST(SUBSTRING(c.title,1,LOCATE(' ',c.title)) AS SIGNED), c.id ASC',
+    ORDER BY CAST(SUBSTRING(c.title,1,LOCATE(" ",c.title)) AS SIGNED), c.id ASC',
     array(
         'user_id_1'=>$_SESSION['id'],
         'user_id_2'=>$_SESSION['id'],
