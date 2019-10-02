@@ -14,11 +14,11 @@ form_textarea('Description');
 
 form_textarea('Flag');
 form_input_checkbox('Automark', true);
-form_input_checkbox('Case insensitive');
+form_input_checkbox('Case insensitive', true);
 
 form_input_text('Points');
-form_input_text('Num attempts allowed');
-form_input_text('Min seconds between submissions');
+form_input_text('Num attempts allowed', 5);
+form_input_text('Min seconds between submissions', 10);
 
 $opts = db_query_fetch_all('SELECT * FROM categories ORDER BY title');
 form_select($opts, 'Category', 'id', array_get($_GET, 'category'), 'title');
@@ -38,8 +38,8 @@ array_unshift($opts, array('id'=>0, 'title'=> '-- This challenge will become ava
 form_select($opts, 'Relies on', 'id', $challenge['relies_on'], 'title', 'category');
 
 form_input_checkbox('Exposed', true);
-form_input_text('Available from', date_time());
-form_input_text('Available until', date_time());
+form_input_text('Available from', wactf_start());
+form_input_text('Available until', wactf_end());
 
 message_inline_blue('Create and edit challenge to add files.');
 

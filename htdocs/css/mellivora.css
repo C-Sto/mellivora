@@ -1,13 +1,13 @@
 /**
     Page layout
 **/
-
+/**Background colour for whole webpage **/
 body {
-    background-color: #eaeaea;
+    background-color: #000000;
 }
-
+/**Background Colour for content section **/
 .page {
-    background-color: #ffffff;
+    background-color: #000000;
     max-width: 1100px;
     margin-left: auto;
     margin-right: auto;
@@ -17,13 +17,38 @@ body {
     max-width: 1100px;
     padding: 10px 65px 10px 65px;
 }
-
+/**Background colour for footer section**/
 #footer {
-    background-color: #f8f8f8;
+    background-color: #000000;
     font-size: 10px;
-    border-top: 4px solid rgba(234, 234, 234, 1);
+/**Background colour for footer line **/
+    border-top: 4px solid rgba(0, 0, 0, 0);
     text-align: center;
     padding: 10px 65px 10px 65px;
+}
+/** Background Video **/
+#intro video {
+    background-color: #000;
+    opacity: .1;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%)
+}
+/** Web page logo **/
+#intro img {
+    position: relative;
+    top: 25px;
+    left: 50px;
+    height: 175px;
 }
 
 #footer p {
@@ -52,8 +77,10 @@ body {
 }
 
 #header-inner {
-    background-color: #f8f8f8;
-    border-bottom: 4px solid rgba(234, 234, 234, 1);
+/** Background color for header section **/
+    background-color: #000000;
+/** Background color for header line**/
+    border-bottom: 4px solid #000000;
     max-width: 1100px;
     overflow: auto;
     margin-left: auto;
@@ -62,27 +89,50 @@ body {
 }
 
 #header-logo {
-    float: left;
+    float: right;
 }
 
 #header-menu {
-    float: right;
+    float: left;
+    position: absolute;
+    top: 125px;
+    left: 250px; 
 }
+
 
 @media (max-width: 800px) {
     #header-logo {
         display: none;
     }
 }
+#logout-button {
+    float: left;
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    padding: 9px 10px;
+    white-space: nowrap;
+}
+
+
 
 /**Pill overrides**/
 
 #menu-main .active a {
-    color: #ffffff;
+    color: #46AA28;
+    background-color: #000000;
+    font-size: 20px;
+
 }
 
+#menu-main :not(.active) a, #menu-main :not(.active) {
+    color: #969696;
+    background-color: #000000;
+    font-size: 20px;
+}
 #menu-main :not(.active) a:hover, #menu-main :not(.active) form:hover {
-    background-color: rgba(234, 234, 234, 0.75);
+    color: #46aa28;
+    font-size: 20px;
 }
 
 #menu-main a {
@@ -109,7 +159,7 @@ body {
 }
 
 #categories-menu li {
-    border: 1px solid #428bca;
+    border: 1px solid #46aa28;
     border-radius: 4px;
     cursor: pointer;
     float: left;
@@ -118,11 +168,12 @@ body {
 }
 
 #categories-menu li.active {
-    background: #428bca;
+    background: #000000;
+    border-color: #46aa28;
 }
 
 #categories-menu li.active a {
-    color: #ffffff;
+    color: #46aa28;
 }
 
 #categories-menu li.disabled {
@@ -136,7 +187,25 @@ body {
 #categories-menu {
     overflow: auto;
 }
-
+.panel {
+    background-color: #000000;
+    color: #46aa28;
+    border-color: #969696;
+}
+.panel a {
+    background-color: #ffffff;
+    color: #000000;
+}
+.challenge-head  {
+    background-color: #ffffff;
+    color: #46aa28;
+}
+.panel > .panel-heading {
+    background-color: #ffffff;
+}
+#category-description {
+    color: #969696;
+}
 /**
     Logo
 **/
@@ -150,8 +219,8 @@ body {
 }
 
 #site-logo object {
-    width: 36px;
-    height: 36px;
+    width: 0px;
+    height: 0px;
 }
 
 #footer-logo {
@@ -164,6 +233,8 @@ body {
 }
 
 #site-logo-text {
+    /**Website logo text**/
+    font-size: 0px;
     color: #000;
     display: inline-block;
     font-family: Georgia, Serif;
@@ -209,6 +280,10 @@ body {
     padding: 0 15px 15px 15px;
     margin: 0 auto;
 }
+.form-control {
+    color: #969696;
+    background-color: #000000; 
+}
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
     margin-bottom: 10px;
@@ -248,6 +323,38 @@ body {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+.form-control {
+    color: #ffffff;
+}
+#register-team-button {
+    background-color: #000000;
+    border: 1px solid #46aa28;
+    color: #46aa28;
+}
+#login-dialog-form {
+    background-color: #000000;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    color: #ffffff;
+}
+#login-button {
+    background-color: #000000;
+    border: 1px solid #46aa28;
+    color: #46aa28;
+}
+.btn {
+    background-color: #000000;
+    color: #ffffff;
+}
+#login-dialog ,a{
+    color: #969696;
+}
+#login-dialog ,a:hover {
+    color: #46aa28;
+}
+#body-container, p {
+    color: #46aa28;
+}
 
 /**
     Challenges page
@@ -266,7 +373,8 @@ body {
 
 .category-tab-content {
     padding: 20px;
-    background: #fff;
+/** Background color to challanges tab **/
+    background: #000000;
     border: 1px solid rgb(221, 221, 221);
     border-top: none;
 
@@ -311,6 +419,7 @@ body {
     padding-bottom: 5px;
     margin: 10px 0 10px;
     border-bottom: 1px solid #eeeeee;
+    color: #ffffff;
 }
 
 .no-padding-or-margin {
@@ -321,6 +430,7 @@ body {
 .alert h1, h2, h3 {
     padding:0;
     margin:0;
+    color: #ffffff;
 }
 
 .discreet-inline {
@@ -343,8 +453,13 @@ body {
 }
 
 /** Score table **/
+.team-table ,td {
+    background-color: #000000;
+    color: #969696;
+}
 .team-table {
     max-width: 450px;
+    color: #ffffff;
 }
 
 .team-table .team-name {
@@ -387,22 +502,36 @@ pre {
 .modal.challenge-attempt .modal-header {
     background: no-repeat 50% 3px;
     background-size: 70px;
-    border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 6px 6px;
     border-bottom: 2px solid;
     color: white;
     min-height: 70px;
 }
 
 .modal.challenge-attempt.incorrect .modal-header {
-    background-image: url('../img/padlock_white.svg');
-    border-bottom-color: #C14444;
-    background-color: #E75353;
+    background-image: url('../../Documents/img/padlock_white.svg');
+    border-bottom-color: #ffffff;
+    background-color: #ffffff;
+    color: red;
+}
+.modal.challenge-attempt.incorrect .modal-body {
+    background-color: #000000;
+}
+.modal.challenge-attempt.incorrect .modal-content {
+    border-color: #969696;
 }
 
 .modal.challenge-attempt.correct .modal-header {
-    background-image: url('../img/flag_white.svg');
-    border-bottom-color: #47ac41;
-    background-color: #a8d68e;
+    background-image: url('../../Documents/img/flag_white.svg');
+    border-bottom-color: #ffffff;
+    background-color: #ffffff;
+    color: #46aa28;
+}
+.modal.challenge-attempt.correct .modal-body {
+    background-color: #000000;
+}
+.modal.challenge-attempt.correct .modal-content {
+    border-color: #969696;
 }
 
 .modal.challenge-attempt button {
@@ -415,4 +544,37 @@ pre {
 
 .modal.challenge-attempt .modal-body {
     overflow: auto;
+}
+/** Profile management page **/
+#email {
+    background-color: #000000;
+}
+#team_name {
+    background-color: #000000;
+}
+#country {
+    background-color: #000000;
+    color: #ffffff;
+}
+# save_changes {
+    background-color: #000000;
+}
+.btn {
+    color: #46aa28;
+    border-color: #46aa28;
+}
+.btn:hover {
+    color: #46aa28;
+    background-color: #000000;
+    border-color: #46aa28; 
+}
+.alert ,h3{
+    background-color: #000000;
+    color: #46aa28;
+    border-color: #46aa28;
+}
+.dropdown-menu {
+    background-color: #000000;
+    color: #ffffff;
+    
 }

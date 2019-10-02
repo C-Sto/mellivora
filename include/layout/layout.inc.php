@@ -20,10 +20,10 @@ function head($title = '') {
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>',($title ? htmlspecialchars($title) . ' : ' : '') , Config::get('MELLIVORA_CONFIG_SITE_NAME'), ' - ', Config::get('MELLIVORA_CONFIG_SITE_SLOGAN'),'</title>
+    <title>',($title ? htmlspecialchars($title) .' ' : ''),'</title>
     <meta name="description" content="',Config::get('MELLIVORA_CONFIG_SITE_DESCRIPTION'),'">
     <meta name="author" content="">
-    <link rel="icon" href="',Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES'),'img/favicon.png" type="image/png" />
+    <link rel="short icon", type="image/ico"  href="https://capture.tf/favicon.ico"/>
 
     <!-- CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
@@ -42,9 +42,25 @@ function head($title = '') {
     }
 
 echo '
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119180337-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+
+  gtag("config", "UA-119180337-2");
+</script>
 </head>
 
-<body>';
+<body>
+<section id="intro" class="wrapper style1 fade-up">
+<video id="static" playsinline="" autoplay="" muted="" loop="">
+    <source src="https://capture.tf/wactf.webm" type="video/webm">
+    <source src="https://capture.tf/wactf.mp4" type="video/mp4">
+</video>
+<img src="https://capture.tf/wactf_logo_small.png" alt="capture.tf"> 
+</section>';
 
 if (!user_is_logged_in()) {
     login_dialog();
@@ -86,7 +102,7 @@ echo '
                             <li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'home">',lang_get('home'),'</a></li>
                             <li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'scores">',lang_get('scoreboard'),'</a></li>
                             ',dynamic_menu_content(),'
-                            <li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'register">',lang_get('register'),'</a></li>
+
                             <li><a href="" data-toggle="modal" data-target="#login-dialog">',lang_get('log_in'),'</a></li>
                         ';
                     }

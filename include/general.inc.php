@@ -1,4 +1,10 @@
 <?php
+function wactf_start() {
+    return date('2019-11-30 09:00:00');
+}
+function wactf_end() {
+    return date('2019-12-01 17:00:00');
+}
 
 function cut_string ($string, $len) {
     return substr($string, 0, $len);

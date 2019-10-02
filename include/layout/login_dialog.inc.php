@@ -20,7 +20,7 @@ function login_dialog() {
                                     <input type="checkbox" name="remember_me" value="1" checked> ',lang_get('remember_me'),'
                                 </label>
                             </div>
-                            <a href="reset_password">',lang_get('forgotten_password'),'</a>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">',lang_get('close'),'</button>
