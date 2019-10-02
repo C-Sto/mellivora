@@ -6,7 +6,7 @@ WACTF Mellivora
 A WACTFified Mellivora
 
 - WACTF theme
-- No Mellivora registrations + No link to registrer page
+- No Mellivora registrations + No link to register page
 - Start/End dates hardcoded into `general.inc.php`
 - Start/End dates automatically fill in new/edited challenges
 - Layout included Google Analytics + WACTF background

@@ -284,6 +284,9 @@ body {
     color: #969696;
     background-color: #000000; 
 }
+.form-control:focus {
+    outline: #46aa28 solid 1px;
+}
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
     margin-bottom: 10px;
@@ -509,7 +512,7 @@ pre {
 }
 
 .modal.challenge-attempt.incorrect .modal-header {
-    background-image: url('../../Documents/img/padlock_white.svg');
+    background-image: url('../img/padlock_white.svg');
     border-bottom-color: #ffffff;
     background-color: #ffffff;
     color: red;
@@ -522,7 +525,7 @@ pre {
 }
 
 .modal.challenge-attempt.correct .modal-header {
-    background-image: url('../../Documents/img/flag_white.svg');
+    background-image: url('../img/flag_white.svg');
     border-bottom-color: #ffffff;
     background-color: #ffffff;
     color: #46aa28;
@@ -556,19 +559,28 @@ pre {
     background-color: #000000;
     color: #ffffff;
 }
-# save_changes {
-    background-color: #000000;
-}
 .btn {
     color: #46aa28;
     border-color: #46aa28;
 }
 .btn:hover {
-    color: #46aa28;
+    color: #81f25f;
     background-color: #000000;
-    border-color: #46aa28; 
+    border-color: #81f25f; 
 }
-.alert ,h3{
+.btn:focus {
+    color: #81f25f;
+    background-color: #000000;
+    border-color: #81f25f;
+    outline: #81f25f solid 1px;
+}
+.btn:active {
+    color: #81f25f;
+    background-color: #000000;
+    border-color: #81f25f; 
+    outline: #81f25f solid 1px;
+}
+.alert, h3 {
     background-color: #000000;
     color: #46aa28;
     border-color: #46aa28;
@@ -576,5 +588,7 @@ pre {
 .dropdown-menu {
     background-color: #000000;
     color: #ffffff;
-    
+}
+.dropdown-menu > li > a {
+    color: #969696;
 }
