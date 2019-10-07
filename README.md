@@ -11,5 +11,6 @@ A WACTFified Mellivora
 - Start/End dates automatically fill in new/edited challenges
 - Layout included Google Analytics + WACTF background
 - Remove forgotten password capability (Mellivora can't email)
-- Add 🎁 before eligible teams
+- Add 🎉 before eligible teams
 - Order challenges by title 1./2./3. etc rather than points
+- Remove flags from scoreboard  

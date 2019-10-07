@@ -8,7 +8,7 @@ function scoreboard ($scores) {
         <tr>
           <th>#</th>
           <th>',lang_get('team'),'</th>
-          <th class="text-center">',lang_get('country'),'</th>
+          <!-- <th class="text-center">',lang_get('country'),'</th> -->
           <th>',lang_get('points'),'</th>
         </tr>
       </thead>
@@ -28,9 +28,9 @@ function scoreboard ($scores) {
               </span>
             </a>
           </td>
-          <td class="text-center">
+          <!-- <td class="text-center">
             ',country_flag_link($score['country_name'], $score['country_code']),'
-          </td>
+          </td> -->
           <td>',number_format($score['score']),'</td>
         </tr>
         ';
