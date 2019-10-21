@@ -12,7 +12,7 @@ form_start(Config::get('MELLIVORA_CONFIG_SITE_ADMIN_RELPATH') . 'actions/new_cat
 form_input_text('Title');
 form_textarea('Description');
 form_input_checkbox('Exposed', true);
-form_input_text('Available from', date_time());
+form_input_text('Available from', wactf_start());
 form_input_text('Available until', wactf_end());
 form_hidden('action', 'new');
 form_button_submit('Create category');
