@@ -72,7 +72,7 @@ function challenges($categories) {
               available_from < '.$now.' AND
               category = :category AND
               exposed = 1
-            ORDER BY points ASC',
+            ORDER BY CAST(SUBSTRING(title,1,LOCATE(" ",title)) AS SIGNED), id ASC',
             array(
                 'category'=>$category['id']
             )

@@ -93,6 +93,7 @@ echo '
                             <li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'hints">',lang_get('hints'),'</a></li>
                             <li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'scores">',lang_get('scores'),'</a></li>
                             <li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'profile">',lang_get('profile'),'</a></li>
+                            <li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'ovpn">OpenVPN Config</a></li>
                             ',dynamic_menu_content(),'
                             <li>',form_logout(),'</li>
                             ';
