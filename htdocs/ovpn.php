@@ -74,7 +74,7 @@ echo '<p>Start OpenVPN if you haven\'t already (it opens into the tray). Right c
 ';
 
 section_subhead('MacOS');
-echo '<p>Start Tunnelblick if you haven\'t already. It might ask you for your password and then show you this screen. Click "I have configuration files" and then "OK":</p>
+echo '<p>Start Tunnelblick if you haven\'t already. It might ask you for your computer password (<strong>not</strong> WACTF password) and then show you this screen. Click "I have configuration files" and then "OK":</p>
 <img src="/img/vpn/mac/4.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 700px" />
 <img src="/img/vpn/mac/5.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 700px" />
 <p>Tunnelblick should open the configuration window, but if not, you can find it in the notification bar too:</p>
@@ -84,7 +84,7 @@ echo '<p>Start Tunnelblick if you haven\'t already. It might ask you for your pa
 <p>There will be several warnings... Don\'t worry about them:</p>
 <img src="/img/vpn/mac/8.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 700px" />
 <img src="/img/vpn/mac/9.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 700px" />
-<p>Install the configuration for yourself and enter your password when prompted:</p>
+<p>Install the configuration for yourself and enter your computer password (<strong>not</strong> WACTF password) when prompted:</p>
 <img src="/img/vpn/mac/10.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 700px" />
 <img src="/img/vpn/mac/11.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 700px" />
 <p>Finally, in the notification bar, click the configuration to connect to the VPN:</p>
