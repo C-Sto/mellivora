@@ -11,7 +11,10 @@ if (isset($_POST['download_ovpn'])) {
   }
 
   // this is outside the web root
-  $filename = Config::get('MELLIVORA_CONFIG_PATH_BASE') . DIRECTORY_SEPARATOR . 'ovpn' . DIRECTORY_SEPARATOR . 'ovpn-team-' . $_SESSION['id'] . '.7z';
+  $filename = Config::get('MELLIVORA_CONFIG_PATH_BASE') . DIRECTORY_SEPARATOR . 
+  				'ovpn' . DIRECTORY_SEPARATOR . 
+  				'team-' . $_SESSION['id'] . DIRECTORY_SEPARATOR . 
+  				'team-' . $_SESSION['id'] . '_client.zip';
 
   if(file_exists($filename)) {
 
@@ -35,10 +38,7 @@ if (isset($_POST['download_ovpn'])) {
     ob_clean();
     flush();
     readfile($filename);
-    
-    header('Location: ' . Config::get('MELLIVORA_CONFIG_SITE_URL') . '/ovpn?success');
     exit;
-
   } else {
     die('Couldn\'t find the OpenVPN config file for your team. See an organiser.');
   }
@@ -75,22 +75,22 @@ echo '<p>Start OpenVPN if you haven\'t already (it opens into the tray). Right c
 
 section_subhead('MacOS');
 echo '<p>Start Tunnelblick if you haven\'t already. It might ask you for your computer password (<strong>not</strong> WACTF password) and then show you this screen. Click "I have configuration files" and then "OK":</p>
-<img src="/img/vpn/mac/4.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 700px" />
-<img src="/img/vpn/mac/5.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 700px" />
+<img src="/img/vpn/mac/4.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
+<img src="/img/vpn/mac/5.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
 <p>Tunnelblick should open the configuration window, but if not, you can find it in the notification bar too:</p>
-<img src="/img/vpn/mac/6.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 700px" />
+<img src="/img/vpn/mac/6.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
 <p>Find and drag the OpenVPN configuration file with the word "mac" in the name and click "Install":</p>
-<img src="/img/vpn/mac/7.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 700px" />
+<img src="/img/vpn/mac/7.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
 <p>There will be several warnings... Don\'t worry about them:</p>
-<img src="/img/vpn/mac/8.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 700px" />
-<img src="/img/vpn/mac/9.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 700px" />
+<img src="/img/vpn/mac/8.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
+<img src="/img/vpn/mac/9.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
 <p>Install the configuration for yourself and enter your computer password (<strong>not</strong> WACTF password) when prompted:</p>
-<img src="/img/vpn/mac/10.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 700px" />
-<img src="/img/vpn/mac/11.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 700px" />
+<img src="/img/vpn/mac/10.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
+<img src="/img/vpn/mac/11.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
 <p>Finally, in the notification bar, click the configuration to connect to the VPN:</p>
-<img src="/img/vpn/mac/12.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 700px" />
+<img src="/img/vpn/mac/12.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
 <p>Done! You should see a notification that says you are connected:</p>
-<img src="/img/vpn/mac/13.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 700px" />
+<img src="/img/vpn/mac/13.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
 ';
 
 section_subhead('Kali Linux');
