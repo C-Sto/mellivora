@@ -77,7 +77,6 @@ echo '
                     <div id="site-logo">
                         <object data="'.Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES').'img/mellivora.svg" type="image/svg+xml"></object>
                     </div>
-                    '.phpversion().'
                 </a>
             </div>
             <div id="header-menu">

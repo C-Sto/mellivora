@@ -258,7 +258,6 @@ function categoryCompletenessDonuts(){
   echo "<script>";
   ?>
     function loadDonuts(){
-      console.log("OK")
       let cats = [
         <?php 
           foreach($categories as $category){
@@ -278,11 +277,8 @@ function categoryCompletenessDonuts(){
           ?>      
       ]
 
-      console.log("THESE ARE MY CATS", cats)
-
       cats.forEach(cat => {
         let ctx = $('#cat_' + cat.id)
-        console.log(ctx)
         chart = new Chart(ctx, {
           type: 'pie',
           data: {

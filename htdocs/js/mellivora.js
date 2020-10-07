@@ -108,9 +108,6 @@ function prettyPrintTime(seconds) {
 }
 
 function winningTeamsToChart(max_points, hours, values) {
-  console.log(values);
-  console.log(max_points);
-  console.log(hours);
   let ctx = $("#winning_chart");
 
   let better_hours = [];
@@ -155,8 +152,6 @@ function winningTeamsToChart(max_points, hours, values) {
 
     index++;
   });
-
-  console.log(datasets);
 
   new Chart(ctx, {
     type: "line",
