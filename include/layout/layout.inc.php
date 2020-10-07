@@ -2,6 +2,7 @@
 require(CONST_PATH_LAYOUT . 'login_dialog.inc.php');
 require(CONST_PATH_LAYOUT . 'messages.inc.php');
 require(CONST_PATH_LAYOUT . 'scores.inc.php');
+require(CONST_PATH_LAYOUT . 'dashboard.inc.php');
 require(CONST_PATH_LAYOUT . 'user.inc.php');
 require(CONST_PATH_LAYOUT . 'forms.inc.php');
 require(CONST_PATH_LAYOUT . 'challenges.inc.php');
@@ -76,6 +77,7 @@ echo '
                     <div id="site-logo">
                         <object data="'.Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES').'img/mellivora.svg" type="image/svg+xml"></object>
                     </div>
+                    '.phpversion().'
                 </a>
             </div>
             <div id="header-menu">
@@ -92,6 +94,7 @@ echo '
                             <li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'challenges">',lang_get('challenges'),'</a></li>
                             <li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'hints">',lang_get('hints'),'</a></li>
                             <li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'scores">',lang_get('scores'),'</a></li>
+                            <li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'dashboard">',lang_get('dashboard'),'</a></li>
                             <li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'profile">',lang_get('profile'),'</a></li>
                             <li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'ovpn">OpenVPN Config</a></li>
                             ',dynamic_menu_content(),'
@@ -102,6 +105,7 @@ echo '
                         echo '
                             <li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'home">',lang_get('home'),'</a></li>
                             <li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'scores">',lang_get('scoreboard'),'</a></li>
+                            <li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'dashboard">',lang_get('dashboard'),'</a></li>
                             ',dynamic_menu_content(),'
 
                             <li><a href="" data-toggle="modal" data-target="#login-dialog">',lang_get('log_in'),'</a></li>
