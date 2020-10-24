@@ -17,26 +17,26 @@ if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIM
     <div class="row">
         <div class="col-lg-12">
             <h2 class="page-header">Winning Teams</h2>
+            <p style="float: right" id="refresh-timer">Page refreshing in <span>300</span> seconds</p>
             <?php winningTeamsChart() ?>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-6">
 
-
-            <h2 class="page-header">Most First Wins</h2>
-            <?php firstWinTable() ?>
-
-            <h2 class="page-header">Category Completeness</h2>
+            <h2 class="page-header" style="margin-top: 30px">Category Completeness</h2>
             <?php 
             categoryCompletenessDonuts() ?>
+
+            <h2 class="page-header" style="margin-top: 30px">Most First Solves</h2>
+            <?php firstWinTable() ?>
 
         </div>
 
         <div class="col-lg-6">
 
 
-            <h2 class="page-header">Challenge Percentage</h2>
+            <h2 class="page-header" style="margin-top: 30px">Challenge Percentage</h2>
             <?php 
             challengePercentTable();
             ?> 
@@ -52,11 +52,20 @@ if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIM
 foot();
 
 echo '
-<h2> OK </h2>
 <script type="text/javascript">
 $(document).ready(function() {
-    loadDonuts()
-    loadTopTeams()
+    loadDonuts();
+    loadTopTeams();
+
+    // hopefully cache doesnt ruin our fun here...
+    var sec = 299
+    var timer = setInterval(function() { 
+       $("#refresh-timer span").text(sec--);
+       if (sec == -1) {
+          location.reload(true);
+          clearInterval(timer);
+       } 
+    }, 1000);
 });
 </script>
 ';
