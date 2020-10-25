@@ -282,7 +282,7 @@ function categoryCompletenessDonuts(){
         chart = new Chart(ctx, {
           type: 'pie',
           data: {
-            labels: ['# Solved', "Unsolved"],
+            labels: ['Solved', "Unsolved"],
             datasets: [{
               label: "Number Solved",
               data: [cat.solved, cat.count - cat.solved],

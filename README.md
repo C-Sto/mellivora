@@ -13,4 +13,5 @@ A WACTFified Mellivora
 - Remove forgotten password capability (Mellivora can't email)
 - Add 🎉 before eligible teams
 - Order challenges by title 1./2./3. etc rather than points
-- Remove flags from scoreboard  
+- Remove country flags from scoreboard  
+- Add a modern scoreboard with the "Dashboard" page

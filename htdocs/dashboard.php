@@ -28,8 +28,11 @@ if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIM
             <?php 
             categoryCompletenessDonuts() ?>
 
-            <h2 class="page-header" style="margin-top: 30px">Most First Solves</h2>
+            <h2 class="page-header" style="margin-top: 50px">Most First Solves</h2>
             <?php firstWinTable() ?>
+
+            <h2 class="page-header" style="margin-top: 50px">Twitter Feed</h2>
+            <a class="twitter-timeline" data-chrome="nofooter noheader noborders noscrollbar transparent" data-theme="dark" data-width="100%" data-height="900px" data-dnt="true" href="https://twitter.com/capture_tf">Tweets by capture_tf</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
         </div>
 
