@@ -26,7 +26,7 @@ function winningTeamsChart(){
                 (SELECT @xi:=-1) xc0
             ) x
         ) T1
-        where T1.hour between  '2019-11-30 00:00:00' and '2019-12-01 08:00:00'
+        where T1.hour between  '2019-11-30 08:00:00' and '2019-12-01 17:00:00'
         order by T1.hour
       ");
 
@@ -59,7 +59,7 @@ function winningTeamsChart(){
                 group by hour
                 order by hour
             ) T2 on T2.hour = T1.hour
-        where T1.hour between  '2019-11-30 00:00:00' and '2019-12-01 08:00:00'
+        where T1.hour between  '2019-11-30 08:00:00' and '2019-12-01 17:00:00'
         order by T1.hour
       ",
       array(
