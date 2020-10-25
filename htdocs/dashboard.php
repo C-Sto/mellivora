@@ -39,7 +39,7 @@ if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIM
         <div class="col-lg-6">
 
 
-            <h2 class="page-header" style="margin-top: 30px">Challenge Percentage</h2>
+            <h2 class="page-header" style="margin-top: 30px">Challenge Completeness</h2>
             <?php 
             challengePercentTable();
             ?> 
