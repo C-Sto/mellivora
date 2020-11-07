@@ -16,8 +16,19 @@ if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIM
 ?>
     <div class="row">
         <div class="col-lg-12">
-            <h2 class="page-header">Winning Teams</h2>
+            <div>
+            <h2 class="page-header">
+            
+                Winning Teams
+            </h2>
+                <div class="form-check form-check-inline">
+                    <input onchange="toggleChart()" class="form-check-input" type="checkbox" id="showEligible" value="1">
+                    <label class="form-check-label" for="showEligible">Only show eligible</label>
+                </div>
+            </div>
             <?php winningTeamsChart() ?>
+            <div><canvas id="winning_chart_1" width="500" height="300"></div>
+            <div><canvas id="winning_chart_2" width="500" height="300"></div>
         </div>
     </div>
     <div class="row">
@@ -52,12 +63,22 @@ if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIM
 foot();
 
 echo '
-<h2> OK </h2>
 <script type="text/javascript">
 $(document).ready(function() {
     loadDonuts()
     loadTopTeams()
+    toggleChart()
 });
+
+function toggleChart(){
+    if($("#showEligible")[0].checked){
+        $("#winning_chart_1").show()
+        $("#winning_chart_2").hide()
+    }else{
+        $("#winning_chart_2").show()
+        $("#winning_chart_1").hide()
+    }
+}
 </script>
 ';
 ?>
