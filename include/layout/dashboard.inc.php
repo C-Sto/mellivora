@@ -161,7 +161,7 @@ function firstWinTable()
             <thead>
                 <tr>
                     <th>' . lang_get('team') . '</th>
-                    <th>' . lang_get('first_solves') . '</th>
+                    <th>' . lang_get('first_solvers') . '</th>
                 </tr>
             </thead>
             <tbody>';
@@ -211,7 +211,7 @@ function challengePercentTable()
         <thead>
           <tr>
             <th>', htmlspecialchars($category['title']), '</th>
-            <th>', lang_get('Progress'), '</th>
+            <th>Progress</th>
           </tr>
         </thead>
         <tbody>
