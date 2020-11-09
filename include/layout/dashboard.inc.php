@@ -20,7 +20,6 @@ function getTopTeams($eligible){
     limit 10';
 
   $top_teams = db_query_fetch_all($query);
-
   return $top_teams;
 }
 
@@ -77,9 +76,9 @@ function teamPoints($teamID){
     ));
 }
 
+
 function allTopTeams($top_teams){
   $res = "[";
-
 
   foreach($top_teams as $team){
 
@@ -160,8 +159,8 @@ function firstWinTable()
         <table class="team-table table table-striped table-hover">
             <thead>
                 <tr>
-                    <th>' . lang_get('team') . '</th>
-                    <th>' . lang_get('first_solvers') . '</th>
+                    <th>' . lang_get('Team') . '</th>
+                    <th>' . lang_get('First Solves') . '</th>
                 </tr>
             </thead>
             <tbody>';
@@ -207,7 +206,7 @@ function challengePercentTable()
   foreach ($categories as $category) {
 
     echo '
-      <table class="team-table table table-striped table-hover" style="table-layout:fixed">
+      <table class="team-table table table-striped table-hover" style="table-layout:fixed; margin-bottom:5px">
         <thead>
           <tr>
             <th>', htmlspecialchars($category['title']), '</th>
@@ -314,11 +313,11 @@ function categoryCompletenessDonuts(){
         chart = new Chart(ctx, {
           type: 'pie',
           data: {
-            labels: ['# Solved', "Unsolved"],
+            labels: ['Solved', "Unsolved"],
             datasets: [{
               label: "Number Solved",
               data: [cat.solved, cat.count - cat.solved],
-              backgroundColor: ["#0074D9", "#FF4136"]
+              backgroundColor: ["#46aa28", "#9c9c9c"]
             }],
           },
           options: {
