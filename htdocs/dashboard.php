@@ -13,15 +13,19 @@ echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.m
 
 
 if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIME_SCORES'))) {
+
 ?>
     <div class="row">
         <div class="col-lg-12">
+            <div>
             <h2 class="page-header">Winning Teams</h2>
-            <p style="float: right" id="refresh-timer">Page refreshing in <span>300</span> seconds</p>
                 <div class="form-check form-check-inline">
                     <input onchange="toggleChart()" class="form-check-input" type="checkbox" id="showEligible" value="1">
                     <label class="form-check-label" for="showEligible">Only show eligible</label>
+                    <p style="float: right" id="refresh-timer">Page refreshing in <span>300</span> seconds</p>
                 </div>
+            </div>
+
             <?php winningTeamsChart() ?>
             <div><canvas id="winning_chart_1" width="500" height="300"></div>
             <div><canvas id="winning_chart_2" width="500" height="300"></div>
@@ -31,8 +35,7 @@ if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIM
         <div class="col-lg-6">
 
             <h2 class="page-header" style="margin-top: 30px">Category Completeness</h2>
-            <?php 
-            categoryCompletenessDonuts() ?>
+            <?php categoryCompletenessDonuts() ?>
 
             <h2 class="page-header" style="margin-top: 50px">Most First Solves</h2>
             <?php firstWinTable() ?>
@@ -63,9 +66,9 @@ foot();
 echo '
 <script type="text/javascript">
 $(document).ready(function() {
-    toggleChart()
     loadDonuts();
     loadTopTeams();
+    toggleChart();
 
     // hopefully cache doesnt ruin our fun here...
     var sec = 299
