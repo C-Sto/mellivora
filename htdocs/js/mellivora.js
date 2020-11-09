@@ -107,8 +107,8 @@ function prettyPrintTime(seconds) {
   return timeParts.join(", ") + " remaining";
 }
 
-function winningTeamsToChart(max_points, hours, values) {
-  let ctx = $("#winning_chart");
+function winningTeamsToChart(ii, max_points, hours, values1, values2) {
+  let ctx = $("#winning_chart_" + ii);
 
   let better_hours = [];
 
@@ -117,7 +117,7 @@ function winningTeamsToChart(max_points, hours, values) {
 
     label = "AM";
 
-    let str = (date.getHours()) % 24;
+    let str = date.getHours() % 24;
 
     if (str > 12) {
       label = "PM";
@@ -141,7 +141,7 @@ function winningTeamsToChart(max_points, hours, values) {
 
   let datasets = [];
   let index = 0;
-  values.forEach((item) => {
+  values1.forEach((item) => {
     datasets.push({
       label: item.team,
       data: item.points,
@@ -176,7 +176,7 @@ function winningTeamsToChart(max_points, hours, values) {
             // stacked: true,
             ticks: {
               fontColor: "white",
-              // min: 0,
+              min: 0,
               // max: max_points,
             },
           },

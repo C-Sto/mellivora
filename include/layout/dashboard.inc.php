@@ -1,103 +1,134 @@
 <?php
 
-function winningTeamsChart(){
+function getTopTeams($eligible){
+  $start = wactf_start();
+  $end = wactf_end();
 
-  $max_points = db_query_fetch_one('select sum(points) as points from challenges')['points'];
+  $query = '
+  select u.id as id, u.team_name as team_name, sum(c.points) as points from submissions s
+    left join challenges c on s.challenge = c.id
+    left join users u on s.user_id = u.id
+    where s.correct = 1 and points > 0';
 
-  $top_teams = db_query_fetch_all('
-    select u.id as id, u.team_name as team_name, sum(c.points) as points from submissions s
-      left join challenges c on s.challenge = c.id
-      left join users u on s.user_id = u.id
-      where s.correct = 1
-      group by s.user_id
-      order by points desc
-      limit 10'
-  );
-
-  $db_hours = db_query_fetch_all("
-      SELECT T1.hour as hour FROM (
-        SELECT SUBDATE('2019-11-30 00:00:00',0) + INTERVAL xc HOUR as hour
-            FROM (
-                SELECT @xi:=@xi+1 as xc from
-                (SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4) xc1,
-                (SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4) xc2,
-                (SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4) xc3,
-                (SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4) xc4,
-                (SELECT @xi:=-1) xc0
-            ) x
-        ) T1
-        where T1.hour between  '2019-11-30 08:00:00' and '2019-12-01 17:00:00'
-        order by T1.hour
-      ");
+  if($eligible){
+    $query .= " and u.eligible = 1";
+  }
 
 
-  echo "<script>";
-  echo "function loadTopTeams() {
-    points = [
+  $query .=' group by s.user_id
+    order by points desc
+    limit 10';
 
-    ";
+  $top_teams = db_query_fetch_all($query);
+  return $top_teams;
+}
+
+function getHours(){
+
+  $start = wactf_start();
+  $end = wactf_end();
+
+  return db_query_fetch_all("
+  SELECT T1.hour as hour FROM (
+    SELECT SUBDATE('$start',0) + INTERVAL xc HOUR as hour
+        FROM (
+            SELECT @xi:=@xi+1 as xc from
+            (SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4) xc1,
+            (SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4) xc2,
+            (SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4) xc3,
+            (SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4) xc4,
+            (SELECT @xi:=-1) xc0
+        ) x
+    ) T1
+    where T1.hour between  '$start' and '$end'
+    order by T1.hour
+  ");
+}
+
+function teamPoints($teamID){
+  $start = wactf_start();
+  $end = wactf_end();
+
+  return db_query_fetch_all("
+    SELECT T1.hour, IFNULL(points,0) as points FROM (
+      SELECT SUBDATE('$start',0) + INTERVAL xc HOUR as hour
+          FROM (
+              SELECT @xi:=@xi+1 as xc from
+              (SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4) xc1,
+              (SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4) xc2,
+              (SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4) xc3,
+              (SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4) xc4,
+              (SELECT @xi:=-1) xc0
+          ) x
+      ) T1
+      left join (
+          select FROM_UNIXTIME( TRUNCATE( s.added /3600, 0 ) * 3600 + (60*60*9) ) AS hour, sum(c.points) as points from submissions s
+              left join challenges c on s.challenge = c.id
+              where s.user_id = :user_id and s.correct = true
+              group by hour
+              order by hour
+          ) T2 on T2.hour = T1.hour
+      where T1.hour between  '$start' and '$end'
+      order by T1.hour
+    ",
+    array(
+      'user_id' => $teamID
+    ));
+}
+
+
+function allTopTeams($top_teams){
+  $res = "[";
+
   foreach($top_teams as $team){
 
-    $team_name = $team['team_name'];
-    
-    $hour_points = db_query_fetch_all("
-      SELECT T1.hour, IFNULL(points,0) as points FROM (
-        SELECT SUBDATE('2019-11-30 00:00:00',0) + INTERVAL xc HOUR as hour
-            FROM (
-                SELECT @xi:=@xi+1 as xc from
-                (SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4) xc1,
-                (SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4) xc2,
-                (SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4) xc3,
-                (SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4) xc4,
-                (SELECT @xi:=-1) xc0
-            ) x
-        ) T1
-        left join (
-            select FROM_UNIXTIME(s.added) as ok,FROM_UNIXTIME( TRUNCATE( s.added /3600, 0 ) * 3600 ) AS hour, sum(c.points) as points from submissions s
-                left join challenges c on s.challenge = c.id
-                where s.user_id = :user_id and s.correct = true
-                group by hour
-                order by hour
-            ) T2 on T2.hour = T1.hour
-        where T1.hour between  '2019-11-30 08:00:00' and '2019-12-01 17:00:00'
-        order by T1.hour
-      ",
-      array(
-        'user_id' => $team['id']
-      ));
+    $team_name = addslashes($team['team_name']);
 
+    $hour_points = teamPoints($team['id']);
+    $res.= "{
+      team: '$team_name',
+      points: [";
+      $points = 0;
+      foreach($hour_points as $hour_point){
+        $points += $hour_point['points'];
+        $res.= "$points,";
+      }
 
-          echo "{
-            team: '$team_name',
-            points: [";
-            $points = 0;
-            foreach($hour_points as $hour_point){
-              $points += $hour_point['points'];
-              echo "$points,";
-            }
-
-          echo ']},';
+    $res.= ']},';
   }
-  echo "
-      ]
 
-      let hours = [
-        ";
-        
+  $res.="]";
 
-        foreach($db_hours as $hour){
-          echo "'".$hour['hour']."',";
-        }
-        
-  echo  "
-      ]
+  return $res;
+}
 
-      winningTeamsToChart($max_points,hours, points)
+function winningTeamsChart(){
+
+  $start = wactf_start();
+  $end = wactf_end();
+
+  $max_points = db_query_fetch_one('select sum(points) as points from challenges')['points'];
+  $db_hours = getHours();
+  $top_teams = getTopTeams(true);
+
+  echo "<script>\n";
+  echo "function loadTopTeams() {
+    let hours = [";
+      foreach($db_hours as $hour){
+        echo "'".$hour['hour']."',";
+      }
+  echo  "]\n";
+
+  echo "let points = ".allTopTeams(getTopTeams(true));
+  echo "\n";
+  echo "let points2 = ".allTopTeams(getTopTeams(false));
+  echo "\n";
+  echo "winningTeamsToChart(1,$max_points,hours, points)";
+  echo "\n";
+  echo "winningTeamsToChart(2,$max_points,hours, points2)
     }";
     
   echo "</script>";
-
-  echo '<canvas id="winning_chart" width="500" height="300" />' ;
 }
 
 function firstWinTable()
@@ -179,7 +210,7 @@ function challengePercentTable()
         <thead>
           <tr>
             <th>', htmlspecialchars($category['title']), '</th>
-            <th>', lang_get('Progress'), '</th>
+            <th>Progress</th>
           </tr>
         </thead>
         <tbody>
