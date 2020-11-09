@@ -18,9 +18,9 @@ if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIM
         <div class="col-lg-12">
             <div>
             <h2 class="page-header">Winning Teams</h2>
-                <div class="form-check form-check-inline">
-                    <input onchange="toggleChart()" class="form-check-input" type="checkbox" id="showEligible" value="1">
-                    <label class="form-check-label" for="showEligible">Only show eligible</label>
+                <div class="form-check form-check-inline" style="float: left">
+                    <input onchange="toggleChart()" class="form-check-input" type="checkbox" id="showEligible" value="1" checked="true">
+                    <label class="form-check-label" for="showEligible">Only Show 🎉 Teams</label>
                 </div>
             </div>
             <p style="float: right" id="refresh-timer">Page refreshing in <span>300</span> seconds</p>
