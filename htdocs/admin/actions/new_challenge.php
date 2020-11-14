@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'num_attempts_allowed' => empty_to_zero($_POST['num_attempts_allowed']),
                 'min_seconds_between_submissions' => empty_to_zero($_POST['min_seconds_between_submissions']),
                 'relies_on'=>$_POST['relies_on'],
-                'exposed' => $_POST['exposed'],
+                'exposed' => 1,
                 'available_from' => strtotime(wactf_start()),
                 'available_until' => strtotime(wactf_end())
             )
