@@ -1,4 +1,4 @@
-WACTF Mellivora
+# WACTF Mellivora
 =========
 
 ✌✌ THIS REPO IS PUBLIC 🔐🔐
@@ -15,3 +15,34 @@ A WACTFified Mellivora
 - Order challenges by title 1./2./3. etc rather than points
 - Remove country flags from scoreboard  
 - Add a modern scoreboard with the "Dashboard" page
+- Adding categories and challenges should use correct hardcoded defaults
+
+## VHost
+```
+<VirtualHost *:80>
+
+   ServerAdmin contact@yourdomain.com
+   ServerName scoreboard.capture.tf
+   DocumentRoot /var/www/mellivora/htdocs
+
+   <Directory "/var/www/mellivora/htdocs">
+      Options -Indexes +MultiViews
+      AllowOverride None
+      Order Deny,Allow
+      Require all granted
+      AddType application/x-httpd-php .php
+   </Directory>
+
+   # error log
+   ErrorLog /var/log/apache2/mellivora-error.log
+   LogLevel warn
+
+   # access log
+   CustomLog /var/log/apache2/mellivora-access.log combined
+
+</VirtualHost>
+```
+
+## Certbot
+
+`sudo certbot --apache` `1,2` `E`

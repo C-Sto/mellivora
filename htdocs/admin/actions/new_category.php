@@ -20,8 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
              'title'=>$_POST['title'],
              'description'=>$_POST['description'],
              'exposed'=>1,
-             'available_from'=>strtotime($_POST['available_from']),
-             'available_until'=>strtotime($_POST['available_until'])
+             'available_from'=>strtotime(wactf_start()),
+             'available_until'=>strtotime(wactf_end())
           )
        );
 
