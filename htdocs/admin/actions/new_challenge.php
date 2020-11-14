@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'title' => $_POST['title'],
                 'description' => $_POST['description'],
                 'flag' => $_POST['flag'],
-                'automark' => $_POST['automark'],
+                'automark' => 1,
                 'case_insensitive' => $_POST['case_insensitive'],
                 'points' => empty_to_zero($_POST['points']),
                 'category' => $_POST['category'],

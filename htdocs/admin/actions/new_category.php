@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
              'added_by'=>$_SESSION['id'],
              'title'=>$_POST['title'],
              'description'=>$_POST['description'],
-             'exposed'=>$_POST['exposed'],
+             'exposed'=>1,
              'available_from'=>strtotime($_POST['available_from']),
              'available_until'=>strtotime($_POST['available_until'])
           )

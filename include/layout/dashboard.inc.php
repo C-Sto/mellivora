@@ -48,6 +48,7 @@ function getHours(){
 function teamPoints($teamID){
   $start = wactf_start();
   $end = wactf_end();
+  $gap = 28800 - date('Z');
 
   return db_query_fetch_all("
     SELECT T1.hour, IFNULL(points,0) as points FROM (
@@ -62,7 +63,7 @@ function teamPoints($teamID){
           ) x
       ) T1
       left join (
-          select FROM_UNIXTIME( TRUNCATE( s.added /3600, 0 ) * 3600 + (60*60*9) ) AS hour, sum(c.points) as points from submissions s
+          select FROM_UNIXTIME( TRUNCATE( s.added /3600, 0 ) * 3600 + ($gap + 3600) ) AS hour, sum(c.points) as points from submissions s
               left join challenges c on s.challenge = c.id
               where s.user_id = :user_id and s.correct = true
               group by hour

@@ -14,7 +14,7 @@ if (isset($_POST['download_ovpn'])) {
   $filename = Config::get('MELLIVORA_CONFIG_PATH_BASE') . DIRECTORY_SEPARATOR . 
   				'ovpn' . DIRECTORY_SEPARATOR . 
   				'team-' . $_SESSION['id'] . DIRECTORY_SEPARATOR . 
-  				'team-' . $_SESSION['id'] . '_client.zip';
+  				'team-' . $_SESSION['id'] . '-client.zip';
 
   if(file_exists($filename)) {
 
@@ -51,59 +51,60 @@ if (isset($_GET['success'])) {
 }
 
 section_head('Download OpenVPN Configuration');
-echo '<p>Your OpenVPN configuration file is contained within an archive along with a script for MacOS and Linux users.</p>
+echo '<p>Your OpenVPN configuration file is contained within an archive along with a script for Linux users.</p>
 <p>
 <form method="post" action="/ovpn">
-  <input type="submit" name="download_ovpn" id="download_ovpn" class="btn btn-primary" value="Download Your Teams Configuration Archive">
+  <input type="submit" name="download_ovpn" id="download_ovpn" class="btn btn-primary" value="Download Your Team\'s Configuration">
 </form>
 </p>';
 
-section_subhead('Windows');
-echo '<p>Start OpenVPN if you haven\'t already (it opens into the tray). Right click the OpenVPN icon and select "Import file":</p>
-<img src="/img/vpn/windows/2.png" alt="vpn-windows" style="margin-bottom: 1em" />
-<p>Find and select the OpenVPN configuration file with the word "windows" in the name:</p>
-<img src="/img/vpn/windows/3.png" alt="vpn-windows" style="margin-bottom: 1em" />
-<p>It should import successfully like so:</p>
-<img src="/img/vpn/windows/4.png" alt="vpn-windows" style="margin-bottom: 1em" />
-<p>Right click on the icon again, and select "Connect":</p>
-<img src="/img/vpn/windows/5.png" alt="vpn-windows" style="margin-bottom: 1em" />
-<p>A window will appear momentarily while the VPN connects. It will dissapear after a few second:</p>
-<img src="/img/vpn/windows/6.png" alt="vpn-windows" style="margin-bottom: 1em" />
-<p>Done! The OpenVPN icon should turn green and you might get a notification that says you are connected:</p>
-<img src="/img/vpn/windows/7.png" alt="vpn-windows" style="margin-bottom: 1em" />
-';
+echo '<br /><h2>Download the <a href="https://capture.tf/files/ovpn-help.zip">OpenVPN Readme & Troubleshooting Guide</a></h2>';
 
-section_subhead('MacOS');
-echo '<p>Start Tunnelblick if you haven\'t already. It might ask you for your computer password (<strong>not</strong> WACTF password) and then show you this screen. Click "I have configuration files" and then "OK":</p>
-<img src="/img/vpn/mac/4.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
-<img src="/img/vpn/mac/5.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
-<p>Tunnelblick should open the configuration window, but if not, you can find it in the notification bar too:</p>
-<img src="/img/vpn/mac/6.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
-<p>Find and drag the OpenVPN configuration file with the word "mac" in the name and click "Install":</p>
-<img src="/img/vpn/mac/7.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
-<p>There will be several warnings... Don\'t worry about them:</p>
-<img src="/img/vpn/mac/8.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
-<img src="/img/vpn/mac/9.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
-<p>Install the configuration for yourself and enter your computer password (<strong>not</strong> WACTF password) when prompted:</p>
-<img src="/img/vpn/mac/10.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
-<img src="/img/vpn/mac/11.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
-<p>Finally, in the notification bar, click the configuration to connect to the VPN:</p>
-<img src="/img/vpn/mac/12.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
-<p>Done! You should see a notification that says you are connected:</p>
-<img src="/img/vpn/mac/13.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
-';
+// echo '<p>Start OpenVPN if you haven\'t already (it opens into the tray). Right click the OpenVPN icon and select "Import file":</p>
+// <img src="/img/vpn/windows/2.png" alt="vpn-windows" style="margin-bottom: 1em" />
+// <p>Find and select the OpenVPN configuration file with the word "windows" in the name:</p>
+// <img src="/img/vpn/windows/3.png" alt="vpn-windows" style="margin-bottom: 1em" />
+// <p>It should import successfully like so:</p>
+// <img src="/img/vpn/windows/4.png" alt="vpn-windows" style="margin-bottom: 1em" />
+// <p>Right click on the icon again, and select "Connect":</p>
+// <img src="/img/vpn/windows/5.png" alt="vpn-windows" style="margin-bottom: 1em" />
+// <p>A window will appear momentarily while the VPN connects. It will dissapear after a few second:</p>
+// <img src="/img/vpn/windows/6.png" alt="vpn-windows" style="margin-bottom: 1em" />
+// <p>Done! The OpenVPN icon should turn green and you might get a notification that says you are connected:</p>
+// <img src="/img/vpn/windows/7.png" alt="vpn-windows" style="margin-bottom: 1em" />
+// ';
 
-section_subhead('Kali Linux');
-echo '<p>Once you\'ve installed OpenVPN, open a terminal and navigate to the directory containing your OpenVPN config file and the <code>update_resolv_conf.sh</code> script. Then run:</p>
-<pre>
-chmod +x update_resolv_conf.sh
-openvpn team-X-mac-linux.ovpn
-</pre>
-<p>This will execute the <code>update_resolv_conf</code> script too which is necessary for DNS to work.</p>
-<p><strong>Note: If the script throws errors, <code>reboot</code> and try again.</strong></p>
-<p>You should be good to go when you see the message <code>Initialization Sequence Completed</code> appear in the terminal.</p>';
+// section_subhead('MacOS');
+// echo '<p>Start Tunnelblick if you haven\'t already. It might ask you for your computer password (<strong>not</strong> WACTF password) and then show you this screen. Click "I have configuration files" and then "OK":</p>
+// <img src="/img/vpn/mac/4.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
+// <img src="/img/vpn/mac/5.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
+// <p>Tunnelblick should open the configuration window, but if not, you can find it in the notification bar too:</p>
+// <img src="/img/vpn/mac/6.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
+// <p>Find and drag the OpenVPN configuration file with the word "mac" in the name and click "Install":</p>
+// <img src="/img/vpn/mac/7.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
+// <p>There will be several warnings... Don\'t worry about them:</p>
+// <img src="/img/vpn/mac/8.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
+// <img src="/img/vpn/mac/9.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
+// <p>Install the configuration for yourself and enter your computer password (<strong>not</strong> WACTF password) when prompted:</p>
+// <img src="/img/vpn/mac/10.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
+// <img src="/img/vpn/mac/11.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
+// <p>Finally, in the notification bar, click the configuration to connect to the VPN:</p>
+// <img src="/img/vpn/mac/12.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
+// <p>Done! You should see a notification that says you are connected:</p>
+// <img src="/img/vpn/mac/13.png" alt="vpn-mac" style="margin-bottom: 1em; max-width: 600px" />
+// ';
 
-section_head('What Now?');
-echo 'Maybe check out the Misc 1 challenge?';
+// section_subhead('Kali Linux');
+// echo '<p>Once you\'ve installed OpenVPN, open a terminal and navigate to the directory containing your OpenVPN config file and the <code>update_resolv_conf.sh</code> script. Then run:</p>
+// <pre>
+// sudo chmod +x update_resolv_conf.sh
+// sudo openvpn team-X-mac-linux.ovpn
+// </pre>
+// <p>This will execute the <code>update_resolv_conf</code> script too which is necessary for DNS to work.</p>
+// <p><strong>Note: If the script throws errors, <code>reboot</code> and try again.</strong></p>
+// <p>You should be good to go when you see the message <code>Initialization Sequence Completed</code> appear in the terminal.</p>';
+
+// section_head('What Now?');
+// echo 'Maybe check out the Misc 1 challenge?';
 
 foot();
