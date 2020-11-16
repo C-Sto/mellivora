@@ -43,6 +43,14 @@ A WACTFified Mellivora
 </VirtualHost>
 ```
 
+## Increase file upload limit (for small artefacts)
+```
+sudo nano /etc/php/7.4/apache2/php.ini
+upload_max_filesize = 20M
+post_max_size = 18M
+sudo systemctl reload apache2.service
+```
+
 ## Certbot
 
 `sudo certbot --apache` `1,2` `E`
