@@ -13,7 +13,6 @@ if (isset($_POST['download_ovpn'])) {
   // this is outside the web root
   $filename = Config::get('MELLIVORA_CONFIG_PATH_BASE') . DIRECTORY_SEPARATOR . 
   				'ovpn' . DIRECTORY_SEPARATOR . 
-  				'team-' . $_SESSION['id'] . DIRECTORY_SEPARATOR . 
   				'team-' . $_SESSION['id'] . '-client.zip';
 
   if(file_exists($filename)) {
@@ -50,15 +49,17 @@ if (isset($_GET['success'])) {
   message_generic('Downloaded!', 'If you haven’t used OpenVPN before, follow the guide below and if you get really stuck see an organiser who can help.', false, false, false);
 }
 
-section_head('Download OpenVPN Configuration');
-echo '<p>Your OpenVPN configuration file is contained within an archive along with a script for Linux users.</p>
+section_head('OpenVPN Configuration');
+echo '<p><strong>1.</strong> Download the <a href="https://capture.tf/files/WACTF-OpenVPN-README.pdf">WACTF OpenVPN README</a> & <a href="https://capture.tf/files/WACTF-Troubleshooting-Guide.pdf">Troubleshooting Guide</a></p>';
+
+echo '<p><strong>2.</strong> Download your team\'s OpenVPN configuration archive.</p>
 <p>
 <form method="post" action="/ovpn">
-  <input type="submit" name="download_ovpn" id="download_ovpn" class="btn btn-primary" value="Download Your Team\'s Configuration">
+  <input type="submit" name="download_ovpn" id="download_ovpn" class="btn btn-primary" value="Download Team\'s Configuration">
 </form>
 </p>';
 
-echo '<br /><h2>Download the <a href="https://capture.tf/files/ovpn-help.zip">OpenVPN Readme & Troubleshooting Guide</a></h2>';
+echo '<p><strong>3.</strong> Unzip the archive and follow the REAMDME for your Operating System to connect to your environmemnt.</p>';
 
 // echo '<p>Start OpenVPN if you haven\'t already (it opens into the tray). Right click the OpenVPN icon and select "Import file":</p>
 // <img src="/img/vpn/windows/2.png" alt="vpn-windows" style="margin-bottom: 1em" />
