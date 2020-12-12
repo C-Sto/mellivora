@@ -27,6 +27,7 @@ if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIM
                     <span>Only Show 🎉 Teams</span>
                 </div>
             </div>
+            <p style="float: right" id="refresh-timer">Page refreshing in <span>300</span> seconds</p>
 
             <?php winningTeamsChart() ?>
             <div><canvas id="winning_chart_1" width="500" height="300"></div>
