@@ -13,6 +13,7 @@ echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.m
 
 
 if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIME_SCORES'))) {
+
 ?>
     <div class="row">
         <div class="col-lg-12">
@@ -37,8 +38,7 @@ if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIM
         <div class="col-lg-6">
 
             <h2 class="page-header" style="margin-top: 30px">Category Completeness</h2>
-            <?php 
-            categoryCompletenessDonuts() ?>
+            <?php categoryCompletenessDonuts() ?>
 
             <h2 class="page-header" style="margin-top: 50px">Most First Solves</h2>
             <?php firstWinTable() ?>
@@ -96,4 +96,3 @@ function toggleChart(){
 </script>
 ';
 ?>
-

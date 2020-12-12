@@ -20,6 +20,7 @@ function getTopTeams($eligible){
     limit 10';
 
   $top_teams = db_query_fetch_all($query);
+
   return $top_teams;
 }
 
@@ -48,7 +49,9 @@ function getHours(){
 function teamPoints($teamID){
   $start = wactf_start();
   $end = wactf_end();
+
   $gap = 28800 - date('Z');
+
 
   return db_query_fetch_all("
     SELECT T1.hour, IFNULL(points,0) as points FROM (
@@ -76,7 +79,6 @@ function teamPoints($teamID){
       'user_id' => $teamID
     ));
 }
-
 
 function allTopTeams($top_teams){
   $res = "[";

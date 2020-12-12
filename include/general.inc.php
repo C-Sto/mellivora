@@ -450,6 +450,7 @@ function check_server_and_db_time() {
     // check for DB and PHP time mismatch
     $dbInfo = db_query_fetch_one('SELECT UNIX_TIMESTAMP() AS timestamp, TIMESTAMPDIFF(SECOND, UTC_TIMESTAMP(), NOW()) AS timezone_offzet_seconds');
     $time = time();
+    
     $error = abs($time - $dbInfo['timestamp']);
     if ($error >= 5) {
         message_inline_red('Database and PHP times are out of sync.

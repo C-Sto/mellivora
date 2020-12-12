@@ -111,9 +111,17 @@ function winningTeamsToChart(ii, max_points, hours, values1, values2) {
   let ctx = $("#winning_chart_" + ii);
 
   let better_hours = [];
+  // let now = new Date("2020-12-12 14:00:00");
+  let now = new Date(new Date().getTime() + 60 * 60 * 1000);
 
+  let stop = null;
+  ii = 0;
   hours.forEach((time) => {
     let date = new Date(time);
+
+    if (stop === null && date > now) {
+      stop = ii;
+    }
 
     label = "AM";
 
@@ -124,6 +132,7 @@ function winningTeamsToChart(ii, max_points, hours, values1, values2) {
       str -= 12;
     }
     better_hours.push(`${str} ${label}`);
+    ii++;
   });
 
   let colors = [
@@ -140,18 +149,24 @@ function winningTeamsToChart(ii, max_points, hours, values1, values2) {
   ];
 
   let datasets = [];
-  let index = 0;
-  values1.forEach((item) => {
+  for (let ii = 0; ii < values1.length; ii++) {
+    let item = values1[ii];
+    let points = item.points;
+    if (stop !== null) {
+      points = points.slice(0, stop);
+    }
+
     datasets.push({
       label: item.team,
-      data: item.points,
+      data: points,
       fill: false,
-      borderColor: colors[index],
-      pointBackgroundColor: colors[index],
+      borderColor: colors[ii],
+      pointBackgroundColor: colors[ii],
     });
+    // }
+  }
 
-    index++;
-  });
+  // console.log(datasets);
 
   new Chart(ctx, {
     type: "line",
@@ -170,6 +185,7 @@ function winningTeamsToChart(ii, max_points, hours, values1, values2) {
         intersect: false,
       },
       // Can't just just `stacked: true` like the docs say
+      legend: { labels: { fontColor: "white" } },
       scales: {
         yAxes: [
           {
