@@ -4,7 +4,7 @@ function wactf_start() {
         return Config::get('WACTF_START');
     } else {
         return date('2020-12-12 09:00:00');
-        // return date('2019-11-30 09:00:00');
+        //return date('2019-11-30 09:00:00');
     }
 }
 function wactf_end() {
@@ -12,7 +12,7 @@ function wactf_end() {
         return Config::get('WACTF_END');
     } else {
         return date('2020-12-13 17:00:00');
-        // return date('2019-12-01 17:00:00');
+        //return date('2019-12-01 17:00:00');
     }
 }
 

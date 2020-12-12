@@ -66,7 +66,7 @@ function teamPoints($teamID){
           ) x
       ) T1
       left join (
-          select FROM_UNIXTIME( TRUNCATE( s.added /3600, 0 ) * 3600 + ( $gap + 3600) ) AS hour, sum(c.points) as points from submissions s
+          select FROM_UNIXTIME( TRUNCATE( s.added /3600, 0 ) * 3600 + ($gap + 3600) ) AS hour, sum(c.points) as points from submissions s
               left join challenges c on s.challenge = c.id
               where s.user_id = :user_id and s.correct = true
               group by hour
