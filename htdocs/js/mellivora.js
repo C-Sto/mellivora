@@ -125,12 +125,17 @@ function winningTeamsToChart(ii, max_points, hours, values1, values2) {
 
     label = "AM";
 
-    let str = date.getHours() % 24;
-
-    if (str > 12) {
-      label = "PM";
-      str -= 12;
+    let str = date.getHours() % 24
+    
+    if(str == 0){
+      str = 12  
+    }else if(str >= 12){
+      label = "PM"
+      if (str > 12) {
+        str -= 12;
+      }
     }
+    
     better_hours.push(`${str} ${label}`);
     ii++;
   });
