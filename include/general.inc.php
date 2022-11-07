@@ -1,4 +1,20 @@
 <?php
+function wactf_start() {
+    if (Config::get('WACTF_START')) {
+        return Config::get('WACTF_START');
+    } else {
+        return date('2020-12-12 09:00:00');
+        //return date('2019-11-30 09:00:00');
+    }
+}
+function wactf_end() {
+    if (Config::get('WACTF_END')) {
+        return Config::get('WACTF_END');
+    } else {
+        return date('2020-12-13 17:00:00');
+        //return date('2019-12-01 17:00:00');
+    }
+}
 
 function cut_string ($string, $len) {
     return substr($string, 0, $len);
@@ -434,6 +450,7 @@ function check_server_and_db_time() {
     // check for DB and PHP time mismatch
     $dbInfo = db_query_fetch_one('SELECT UNIX_TIMESTAMP() AS timestamp, TIMESTAMPDIFF(SECOND, UTC_TIMESTAMP(), NOW()) AS timezone_offzet_seconds');
     $time = time();
+    
     $error = abs($time - $dbInfo['timestamp']);
     if ($error >= 5) {
         message_inline_red('Database and PHP times are out of sync.

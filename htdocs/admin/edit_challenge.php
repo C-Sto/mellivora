@@ -50,8 +50,8 @@ array_unshift($opts, array('id'=>0, 'title'=> '-- This challenge will become ava
 form_select($opts, 'Relies on', 'id', $challenge['relies_on'], 'title', 'category');
 
 form_input_checkbox('Exposed', $challenge['exposed']);
-form_input_text('Available from', date_time($challenge['available_from']));
-form_input_text('Available until', date_time($challenge['available_until']));
+form_input_text('Available from', wactf_start($challenge['available_from']));
+form_input_text('Available until', wactf_end($challenge['available_until']));
 
 form_hidden('action', 'edit');
 form_hidden('id', $_GET['id']);

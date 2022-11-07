@@ -140,6 +140,7 @@ $lang['challenge_relies_on'] = 'The details for this challenge will be displayed
 $lang['no_reset_data'] = 'No reset data found.';
 
 $lang['scoreboard'] = 'Scoreboard';
+$lang['dashboard'] = 'Dashboard';
 $lang['first_solvers'] = 'First solvers';
 $lang['percentage_solvers'] = 'Solved by';
 $lang['unsolved'] = 'Unsolved';

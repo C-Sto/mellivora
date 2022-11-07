@@ -38,7 +38,7 @@ foreach($categories as $category) {
             'points'
         ),
         array('category' => $category['id']),
-        'points ASC'
+        "CAST(SUBSTRING(title,1,LOCATE(' ',title)) AS SIGNED), id ASC"
     );
 
     if (empty($challenges)) {
