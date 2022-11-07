@@ -3,12 +3,13 @@
 function scoreboard ($scores) {
 
     echo '
+    <p>🎉 = Team is eligible for <a href="https://capture.tf/#info">prizes</a>!<br />If your team meets the eligibility criteria, <a href="https://capture.tf/terms.html#id">see here</a> to get the 🎉</p>
     <table class="team-table table table-striped table-hover">
       <thead>
         <tr>
           <th>#</th>
           <th>',lang_get('team'),'</th>
-          <th class="text-center">',lang_get('country'),'</th>
+          <!-- <th class="text-center">',lang_get('country'),'</th> -->
           <th>',lang_get('points'),'</th>
         </tr>
       </thead>
@@ -28,9 +29,9 @@ function scoreboard ($scores) {
               </span>
             </a>
           </td>
-          <td class="text-center">
+          <!-- <td class="text-center">
             ',country_flag_link($score['country_name'], $score['country_code']),'
-          </td>
+          </td> -->
           <td>',number_format($score['score']),'</td>
         </tr>
         ';
@@ -72,7 +73,7 @@ function challenges($categories) {
               available_from < '.$now.' AND
               category = :category AND
               exposed = 1
-            ORDER BY points ASC',
+            ORDER BY CAST(SUBSTRING(title,1,LOCATE(" ",title)) AS SIGNED), id ASC',
             array(
                 'category'=>$category['id']
             )

@@ -36,6 +36,7 @@ if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIM
 
         $scores = db_query_fetch_all('
             SELECT
+               u.eligible AS eligible,
                u.id AS user_id,
                u.team_name,
                co.id AS country_id,
@@ -49,8 +50,14 @@ if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIM
             LEFT JOIN challenges AS c ON c.id = s.challenge
             WHERE u.competing = 1
             GROUP BY u.id
-            ORDER BY score DESC, tiebreaker ASC'
+            ORDER BY eligible DESC, score DESC, tiebreaker ASC'
         );
+
+        foreach ($scores as $key => $value) {
+          if ($value['eligible'] == true) {
+              $scores[$key]['team_name'] = "🎉 " . $value['team_name'];
+          }
+        }
 
         scoreboard($scores);
     }
@@ -67,6 +74,7 @@ if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIM
 
             $scores = db_query_fetch_all('
             SELECT
+               u.eligible AS eligible,
                u.id AS user_id,
                u.team_name,
                co.id AS country_id,
@@ -82,11 +90,17 @@ if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIM
               u.competing = 1 AND
               u.user_type = :user_type
             GROUP BY u.id
-            ORDER BY score DESC, tiebreaker ASC',
+            ORDER BY eligible DESC, score DESC, tiebreaker ASC',
                 array(
                     'user_type'=>$user_type['id']
                 )
             );
+
+            foreach ($scores as $key => $value) {
+              if ($value['eligible'] == true) {
+                  $scores[$key]['team_name'] = "🎁 " . $value['team_name'];
+              }
+            }
 
             scoreboard($scores);
         }

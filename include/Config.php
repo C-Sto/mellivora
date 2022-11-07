@@ -10,7 +10,8 @@ abstract class Config {
             return getenv($key);
         }
 
-        return self::$config[$key];
+        return isset(self::$config[$key]) ?  self::$config[$key] : null;
+
     }
 
     public static function set($key, $value) {

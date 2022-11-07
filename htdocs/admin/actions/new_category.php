@@ -19,9 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
              'added_by'=>$_SESSION['id'],
              'title'=>$_POST['title'],
              'description'=>$_POST['description'],
-             'exposed'=>$_POST['exposed'],
-             'available_from'=>strtotime($_POST['available_from']),
-             'available_until'=>strtotime($_POST['available_until'])
+             'exposed'=>1,
+             'available_from'=>strtotime(wactf_start()),
+             'available_until'=>strtotime(wactf_end())
           )
        );
 
