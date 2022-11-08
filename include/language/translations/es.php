@@ -29,6 +29,9 @@ $lang['available_in'] = 'Disponible en';
 $lang['cat_unavailable'] = 'Categoria no disponible';
 
 $lang['two_factor_auth'] = 'Autentificacion de dos-factores';
+$lang['link_discord_account'] = 'Vincular cuenta de Discord';
+$lang['link_discord'] = 'Link Discord';
+$lang['relink_discord'] = 'Re-link Discord';
 $lang['two_factor_auth_required'] = 'Autentificacion de dos-factores requerida';
 $lang['enable_two_factor_auth'] = 'Activar autentificacion de dos-factores';
 $lang['disable_two_factor_auth'] = 'Desactivar utentificacion de dos-factores';

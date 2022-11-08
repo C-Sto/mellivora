@@ -44,3 +44,4 @@ define('CONST_PATH_CONFIG', CONST_PATH_INCLUDE . 'config/');
 define('CONST_PATH_FILE_WRITABLE', Config::get('MELLIVORA_CONFIG_PATH_BASE') . 'writable/');
 define('CONST_PATH_FILE_UPLOAD', CONST_PATH_FILE_WRITABLE . 'upload/');
 define('CONST_PATH_CACHE', CONST_PATH_FILE_WRITABLE . 'cache/');
+define('CONST_DISCORD_API_KEY', getenv('DISC_API_KEY'));

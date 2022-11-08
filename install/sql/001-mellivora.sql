@@ -214,6 +214,7 @@ CREATE TABLE users (
   competing tinyint(1) NOT NULL DEFAULT '1',
   country_id smallint(5) unsigned NOT NULL,
   2fa_status enum('disabled','generated','enabled') NOT NULL DEFAULT 'disabled',
+  discord_status enum('unlinked','linked') NOT NULL DEFAULT 'unlinked',
   PRIMARY KEY (id),
   UNIQUE KEY email (email),
   UNIQUE KEY team_name (team_name),

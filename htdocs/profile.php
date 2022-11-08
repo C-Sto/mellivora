@@ -12,7 +12,8 @@ $user = db_select_one(
         'enabled',
         'competing',
         'country_id',
-        '2fa_status'
+        '2fa_status',
+        'discord_status'
     ),
     array('id' => $_SESSION['id'])
 );
@@ -35,6 +36,49 @@ form_select($opts, 'Country', 'id', $user['country_id'], 'country_name');
 form_hidden('action', 'edit');
 form_button_submit(lang_get('save_changes'));
 form_end();
+
+section_subhead(
+    lang_get('link_discord_account'),
+    '| <a href="https://discord.gg/Ucc9VWhKWp" target=”_blank”>Join the Discord</a>', false);
+
+if ($user['discord_status'] == 'unlinked') {
+    form_start('actions/profile');
+    form_hidden('action', 'discord_link');
+    form_button_submit(lang_get('link_discord'));
+    form_end();
+} else {
+    message_inline_blue('Your Discord account has been linked.', false);
+    
+    $url = 'https://base.blakemccullough.com/getdiscord' . '?' . http_build_query(array('teamid' => $user['team_name']));
+    $headers = array('X-API-Key: ' . CONST_DISCORD_API_KEY);
+
+    $crl = curl_init($url);
+    curl_setopt($crl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($crl, CURLOPT_TIMEOUT, 4);
+    curl_setopt($crl, CURLOPT_HTTPHEADER, $headers);
+    $res = curl_exec($crl);
+
+    if (curl_getinfo($crl, CURLINFO_RESPONSE_CODE) == 200) {
+    
+        curl_close($crl);
+        $results_json = json_decode($res);
+
+        echo '<h4>Members linked to this team:</h4>';
+        foreach ($results_json->Results as $name) {
+            echo '<li>' . $name . '</li>';
+        }
+
+    } else {
+
+        # If the call fails, don't list anything.
+        curl_close($crl);
+    }
+
+    form_start('actions/profile');
+    form_hidden('action', 'discord_link');
+    form_button_submit(lang_get('relink_discord'));
+    form_end();
+}
 
 section_subhead(lang_get('two_factor_auth'), lang_get('using_totp'));
 form_start('actions/profile');

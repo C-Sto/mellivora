@@ -29,6 +29,9 @@ $lang['available_in'] = 'Available in';
 $lang['cat_unavailable'] = 'Category unavailable';
 
 $lang['two_factor_auth'] = 'Two-factor authentication';
+$lang['link_discord'] = 'Link Discord';
+$lang['relink_discord'] = 'Re-link Discord';
+$lang['link_discord_account'] = 'Link Discord account';
 $lang['two_factor_auth_required'] = 'Two-factor authentication required';
 $lang['enable_two_factor_auth'] = 'Enable two-factor authentication';
 $lang['disable_two_factor_auth'] = 'Disable two-factor authentication';

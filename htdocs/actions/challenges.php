@@ -133,6 +133,57 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             redirect('challenges?status=manual');
         }
 
+        if ($correct) {
+
+            // Report successful solve to Discord
+            $scores = db_query_fetch_all('
+                SELECT
+                   u.id AS user_id,
+                   u.team_name,
+                   SUM(c.points) AS score
+                FROM users AS u
+                LEFT JOIN submissions AS s ON u.id = s.user_id AND s.correct = 1
+                LEFT JOIN challenges AS c ON c.id = s.challenge
+                WHERE u.competing = 1
+                GROUP BY u.id
+                ORDER BY score DESC'
+            );
+
+            foreach ($scores as $key => $value) {
+              if ($value['user_id'] == $_SESSION['id']) {
+                  $team = $value['team_name'];
+                  $score = $value['score'];
+              }
+            }
+
+            $challenge = db_select_one(
+                'challenges',
+                array(
+                    'title'
+                ),
+                array(
+                    'id' => $_POST['challenge']
+                )
+            );
+
+            $report = array('teamid' => $team,
+                            'teamname' => $team,
+                            'points' => $score,
+                            'challenge' => $challenge['title']
+                           );
+
+            $headers = array('X-API-Key: ' . CONST_DISCORD_API_KEY);
+            $url = 'https://base.blakemccullough.com/challengecomplete' . '?' . http_build_query($report);
+
+            $crl = curl_init($url);
+            curl_setopt($crl, CURLOPT_TIMEOUT, 5);
+            curl_setopt($crl, CURLOPT_CUSTOMREQUEST, "POST");
+            curl_setopt($crl, CURLOPT_HTTPHEADER, $headers);
+            curl_exec($crl);
+            curl_close($crl);
+
+        }
+
         redirect('challenges?category='.$challenge['category'].'&status=' . ($correct ? 'correct' : 'incorrect'));
     }
 }

@@ -26,6 +26,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         redirect('profile?generic_success=1');
     }
 
+    else if ($_POST['action'] == 'discord_link') {
+
+        $team = db_select_one('users', array('team_name'), array('id' => $_SESSION['id']));
+        $url = 'https://base.blakemccullough.com/adddiscord' . '?' . http_build_query(array('teamid' => $team['team_name']));
+
+        $crl = curl_init($url);
+        curl_setopt($crl, CURLOPT_TIMEOUT, 10);
+        curl_setopt($crl, CURLOPT_HEADER, true);
+        curl_setopt($crl, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($crl, CURLOPT_RETURNTRANSFER, true);
+        curl_exec($crl);
+
+        if (curl_getinfo($crl, CURLINFO_RESPONSE_CODE) == 200) {
+
+            $redirectURL = curl_getinfo($crl, CURLINFO_EFFECTIVE_URL);
+            curl_close($crl);
+
+            db_update(
+                'users',
+                array(
+                    'discord_status'=>'linked'
+                ),
+                array(
+                    'id'=>$_SESSION['id']
+                )
+            );
+
+            header('Location: ' . $redirectURL);
+            die();
+
+        } else {
+
+            curl_close($crl);
+            message_error('Error linking Discord account.');
+        }
+
+    }
+
     else if ($_POST['action'] == '2fa_generate') {
 
         db_insert(
@@ -128,4 +166,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         redirect('profile?generic_success=1');
     }
+
 }
