@@ -10,9 +10,9 @@ function getTopTeams($eligible){
     left join users u on s.user_id = u.id
     where s.correct = 1 and points > 0';
 
-  // if($eligible){
-    // $query .= " and u.eligible = 1";
-  // }
+  if($eligible){
+      $query .= " and u.eligible = 1";
+  }
 
 
   $query .=' group by s.user_id
