@@ -529,6 +529,11 @@ a:focus {
     height: 16px;
 }
 
+.bbcode_spoiler {
+    color: black;
+    background-color: black;
+}
+
 .bbcode_columns {
     width: 100%;
 }

@@ -1,5 +1,4 @@
 # WACTF Mellivora
-=========
 
 ✌✌ THIS REPO IS PUBLIC 🔐🔐
 
@@ -32,6 +31,8 @@ A WACTFified Mellivora
       Require all granted
       AddType application/x-httpd-php .php
    </Directory>
+
+### Development
 
    # error log
    ErrorLog /var/log/apache2/mellivora-error.log

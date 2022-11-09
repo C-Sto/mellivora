@@ -11,7 +11,7 @@ function getTopTeams($eligible){
     where s.correct = 1 and points > 0';
 
   if($eligible){
-    $query .= " and u.eligible = 1";
+      $query .= " and u.eligible = 1";
   }
 
 
@@ -140,8 +140,7 @@ function firstWinTable()
     SELECT 
     count(user_id) as count,
     u2.team_name as team_name,
-    u2.id as user_id,
-    u2.eligible as eligible
+    u2.id as user_id
     FROM submissions s
     JOIN (
         SELECT challenge, min(s.added) as first
