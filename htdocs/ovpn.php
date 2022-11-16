@@ -50,7 +50,7 @@ if (isset($_GET['success'])) {
 }
 
 section_head('OpenVPN Configuration');
-echo '<p><strong>1.</strong> Download the <a href="https://capture.tf/files/WACTF-OpenVPN-README.pdf">WACTF OpenVPN README</a> & <a href="https://capture.tf/files/WACTF-Troubleshooting-Guide.pdf">Troubleshooting Guide</a></p>';
+echo '<p><strong>1.</strong> Download the <a href="https://wac.tf/files/WACTF-OpenVPN-README.pdf">WACTF OpenVPN README</a> & <a href="https://wac.tf/files/WACTF-Troubleshooting-Guide.pdf">Troubleshooting Guide</a></p>';
 
 echo '<p><strong>2.</strong> Download your team\'s OpenVPN configuration archive.</p>
 <p>

@@ -3,7 +3,7 @@
 function scoreboard ($scores) {
 
     echo '
-    <p>🎉 = Team is eligible for <a href="https://capture.tf/#info">prizes</a>!<br />If your team meets the eligibility criteria, <a href="https://capture.tf/terms.html#id">see here</a> to get the 🎉</p>
+    <p>🎉 = Team is eligible for <a href="https://wac.tf/#info">prizes</a>!<br />If your team meets the eligibility criteria, <a href="https://wac.tf/terms.html#id">see here</a> to get the 🎉</p>
     <table class="team-table table table-striped table-hover">
       <thead>
         <tr>

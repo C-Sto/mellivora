@@ -16,8 +16,13 @@ A WACTFified Mellivora
 - Add a modern scoreboard with the "Dashboard" page
 - Adding categories and challenges should use correct hardcoded defaults
 
-## Stuff
+## Timezone stuff
 Make sure the server is in the correct timezone... `sudo timedatectl set-timezone Australia/Perth`
+Make sure the db iis in the correct timezone! `/etc/mysql/conf.d/mysql.cnf`
+```
+[mysql]
+default-time-zone = "+08:00"
+```
 
 ## VHost
 ```

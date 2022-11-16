@@ -24,7 +24,7 @@ function head($title = '') {
     <title>',($title ? htmlspecialchars($title) .' ' : ''),'</title>
     <meta name="description" content="',Config::get('MELLIVORA_CONFIG_SITE_DESCRIPTION'),'">
     <meta name="author" content="">
-    <link rel="short icon", type="image/ico"  href="https://capture.tf/favicon.ico"/>
+    <link rel="short icon", type="image/ico"  href="https://wac.tf/favicon.ico"/>
 
     <!-- CSS -->
     <link href="',Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES'),'css/bootstrap-3-3-5.min.css" rel="stylesheet">
@@ -57,10 +57,10 @@ echo '
 <body>
 <section id="intro" class="wrapper style1 fade-up">
 <video id="static" playsinline="" autoplay="" muted="" loop="">
-    <source src="https://capture.tf/wactf.webm" type="video/webm">
-    <source src="https://capture.tf/wactf.mp4" type="video/mp4">
+    <source src="https://wac.tf/wactf.webm" type="video/webm">
+    <source src="https://wac.tf/wactf.mp4" type="video/mp4">
 </video>
-<img src="https://capture.tf/wactf_logo_small.png" alt="capture.tf"> 
+<img src="https://wac.tf/wactf_logo_small.png" alt="wac.tf"> 
 </section>';
 
 if (!user_is_logged_in()) {
