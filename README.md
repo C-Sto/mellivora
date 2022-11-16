@@ -16,12 +16,15 @@ A WACTFified Mellivora
 - Add a modern scoreboard with the "Dashboard" page
 - Adding categories and challenges should use correct hardcoded defaults
 
+## Stuff
+Make sure the server is in the correct timezone... `sudo timedatectl set-timezone Australia/Perth`
+
 ## VHost
 ```
 <VirtualHost *:80>
 
    ServerAdmin contact@yourdomain.com
-   ServerName scoreboard.capture.tf
+   ServerName scoreboard.wac.tf
    DocumentRoot /var/www/mellivora/htdocs
 
    <Directory "/var/www/mellivora/htdocs">

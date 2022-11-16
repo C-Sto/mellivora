@@ -1,9 +1,11 @@
 <?php
+date_default_timezone_set('Australia/Perth');
+
 function wactf_start() {
     if (Config::get('WACTF_START')) {
         return Config::get('WACTF_START');
     } else {
-        return date('2020-12-12 09:00:00');
+        return date('2022-12-03 09:00:00');
         //return date('2019-11-30 09:00:00');
     }
 }
@@ -11,7 +13,7 @@ function wactf_end() {
     if (Config::get('WACTF_END')) {
         return Config::get('WACTF_END');
     } else {
-        return date('2020-12-13 17:00:00');
+        return date('2022-12-04 17:00:00');
         //return date('2019-12-01 17:00:00');
     }
 }
