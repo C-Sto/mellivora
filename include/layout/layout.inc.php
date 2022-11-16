@@ -27,7 +27,7 @@ function head($title = '') {
     <link rel="short icon", type="image/ico"  href="https://capture.tf/favicon.ico"/>
 
     <!-- CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="',Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES'),'css/bootstrap-3-3-5.min.css" rel="stylesheet">
     <link href="',Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES'),'css/mellivora.css" rel="stylesheet">';
 
     js_global_dict();
