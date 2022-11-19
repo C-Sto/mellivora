@@ -28,6 +28,8 @@
 //    ''
 //];
 
+Config::set('DISC_API_KEY', '');
+
 // paths below must end in a "/" !
 Config::set('MELLIVORA_CONFIG_PATH_BASE', '/var/www/mellivora/');
 
