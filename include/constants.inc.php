@@ -18,6 +18,8 @@ const CONST_CACHE_NAME_CHALLENGE_HINTS = 'hints_challenge_';
 const CONST_CACHE_NAME_COUNTRY = 'country_';
 const CONST_CACHE_NAME_CHALLENGE = 'challenge_';
 const CONST_CACHE_NAME_USER = 'user_';
+const CONST_CACHE_NAME_AZTOK = 'aztok';
+const CONST_CACHE_NAME_AZUSERSTATUS = "azuserstatus_";
 
 const CONST_MIN_REQUIRED_PHP_VERSION = '5.6';
 
@@ -45,3 +47,10 @@ define('CONST_PATH_FILE_WRITABLE', Config::get('MELLIVORA_CONFIG_PATH_BASE') . '
 define('CONST_PATH_FILE_UPLOAD', CONST_PATH_FILE_WRITABLE . 'upload/');
 define('CONST_PATH_CACHE', CONST_PATH_FILE_WRITABLE . 'cache/');
 define('CONST_DISCORD_API_KEY', Config::get('DISC_API_KEY'));
+
+
+define('AZ_TENANT', Config::get('AZ_TENANT'));
+define('AZ_CLIENT_ID', Config::get('AZ_CLIENT_ID'));
+define('AZ_SCOPE', Config::get('AZ_SCOPE'));
+define('AZ_CLIENT_SECRET', Config::get('AZ_CLIENT_SECRET'));
+define('AZ_API_ADDR', Config::get('AZ_API_ADDR'));

@@ -30,6 +30,14 @@
 
 Config::set('DISC_API_KEY', '');
 
+//AD stuff
+Config::set('AZ_TENANT', '');
+Config::set('AZ_CLIENT_ID', '');
+Config::set('AZ_SCOPE', '');
+Config::set('AZ_CLIENT_SECRET', '');
+Config::set('AZ_API_ADDR', '');
+
+
 // paths below must end in a "/" !
 Config::set('MELLIVORA_CONFIG_PATH_BASE', '/var/www/mellivora/');
 
@@ -127,6 +135,8 @@ Config::set('MELLIVORA_CONFIG_CACHE_TIME_FILES', 0);
 Config::set('MELLIVORA_CONFIG_CACHE_TIME_COUNTRIES', 0);
 Config::set('MELLIVORA_CONFIG_CACHE_TIME_DYNAMIC', 0);
 Config::set('MELLIVORA_CONFIG_CACHE_TIME_REGISTER', 0);
+Config::set('MELLIVORA_CONFIG_CACHE_TIME_AZSTATUS', 10);
+
 
 // user tracking and statistics
 Config::set('MELLIVORA_CONFIG_SEGMENT_IO_KEY', '');
