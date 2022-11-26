@@ -52,14 +52,14 @@ if (isset($_GET['success'])) {
 section_head('OpenVPN Configuration');
 echo '<p><strong>1.</strong> Download the <a href="https://wac.tf/files/WACTF-OpenVPN-README.pdf">WACTF OpenVPN README</a> & <a href="https://wac.tf/files/WACTF-Troubleshooting-Guide.pdf">Troubleshooting Guide</a></p>';
 
-echo '<p><strong>2.</strong> Download your team\'s OpenVPN configuration archive.</p>
+echo '<p><strong>2.</strong> Download your team\'s configuration:</p>
 <p>
 <form method="post" action="/ovpn">
   <input type="submit" name="download_ovpn" id="download_ovpn" class="btn btn-primary" value="Download Team\'s Configuration">
 </form>
 </p>';
 
-echo '<p><strong>3.</strong> Unzip the archive and follow the REAMDME for your Operating System to connect to your environmemnt.</p>';
+echo '<p><strong>3.</strong> Unzip the archive and follow the README for your Operating System to connect to the environment.</p>';
 
 // echo '<p>Start OpenVPN if you haven\'t already (it opens into the tray). Right click the OpenVPN icon and select "Import file":</p>
 // <img src="/img/vpn/windows/2.png" alt="vpn-windows" style="margin-bottom: 1em" />
