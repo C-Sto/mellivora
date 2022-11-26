@@ -43,14 +43,14 @@ function head($title = '') {
     }
 
 echo '
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119180337-2"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HW28FPVR7S"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag("js", new Date());
+  gtag('js', new Date());
 
-  gtag("config", "UA-119180337-2");
+  gtag('config', 'G-HW28FPVR7S');
 </script>
 </head>
 
