@@ -48,9 +48,9 @@ echo '
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  gtag(\'js\', new Date());
 
-  gtag('config', 'G-HW28FPVR7S');
+  gtag(\'config\', \'G-HW28FPVR7S\');
 </script>
 </head>
 
