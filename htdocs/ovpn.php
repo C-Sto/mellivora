@@ -52,10 +52,10 @@ if (isset($_GET['success'])) {
 section_head('OpenVPN Configuration');
 echo '<p><strong>1.</strong> Download the <a href="https://wac.tf/files/WACTF-OpenVPN-README.pdf">WACTF OpenVPN README</a> & <a href="https://wac.tf/files/WACTF-Troubleshooting-Guide.pdf">Troubleshooting Guide</a></p>';
 
-echo '<p><strong>2.</strong> Download your team\'s configuration:</p>
+echo '<p><strong>2.</strong> Download your teams configuration:</p>
 <p>
 <form method="post" action="/ovpn">
-  <input type="submit" name="download_ovpn" id="download_ovpn" class="btn btn-primary" value="Download Team\'s Configuration">
+  <input type="submit" name="download_ovpn" id="download_ovpn" class="btn btn-primary" value="Download Team Configuration">
 </form>
 </p>';
 
