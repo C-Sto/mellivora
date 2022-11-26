@@ -15,6 +15,8 @@ A WACTFified Mellivora
 - Remove country flags from scoreboard  
 - Add a modern scoreboard with the "Dashboard" page
 - Adding categories and challenges should use correct hardcoded defaults
+- Added discord linking function
+- Added AD function
 
 ## Timezone stuff
 Make sure the server is in the correct timezone... `sudo timedatectl set-timezone Australia/Perth`
@@ -26,9 +28,9 @@ default-time-zone = "+08:00"
 
 ## VHost
 ```
-<VirtualHost *:80>
+<VirtualHost *scoreboard.wac.tf*:80>
 
-   ServerAdmin contact@yourdomain.com
+   ServerAdmin info@capture.tf
    ServerName scoreboard.wac.tf
    DocumentRoot /var/www/mellivora/htdocs
 
