@@ -547,6 +547,18 @@ a:focus {
     color: #ffffff;
 }
 
+.bbcode_code_body {
+    font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+    padding: 2px;
+    font-size: 16px;
+    color: #fb870f;
+    background-color: #0e0e0e;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+}
+
 /** Score table **/
 .team-table ,td {
     background-color: #000000;

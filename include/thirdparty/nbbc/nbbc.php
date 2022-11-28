@@ -686,7 +686,7 @@ class BBCodeLibrary
         ),
         'code' => array(
             'mode' => BBCODE_MODE_ENHANCED,
-            'template' => "\n<div class=\"bbcode_code\">\n<div class=\"bbcode_code_head\">Code:</div>\n<pre class=\"bbcode_code_body\">{\$_content/v}</pre>\n</div>\n",
+            'template' => "\n<span class=\"bbcode_code_body\">{\$_content/v}</span>\n",
             'class' => 'code',
             'allow_in' => array('listitem', 'block', 'columns'),
             'content' => BBCODE_VERBATIM,
