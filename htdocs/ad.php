@@ -5,8 +5,7 @@ require('../include/mellivora.inc.php');
 enforce_authentication();
 head('AD');
 
-
-if (isset($_POST['ad_start'])) {
+if (isset($_POST['ad_init'])) {
     if (az_create_env($_SESSION['id'])) {
         //invalidate status cache, since it should have changed here
         invalidate_cache(CONST_CACHE_NAME_AZUSERSTATUS . $_SESSION['id']);
@@ -15,6 +14,12 @@ if (isset($_POST['ad_start'])) {
 
 if (isset($_POST['ad_revert'])) {
     if (az_revert_env($_SESSION['id'])) {
+        invalidate_cache(CONST_CACHE_NAME_AZUSERSTATUS . $_SESSION['id']);
+    }
+}
+
+if (isset($_POST['ad_start'])) {
+    if (az_start_env($_SESSION['id'])) {
         invalidate_cache(CONST_CACHE_NAME_AZUSERSTATUS . $_SESSION['id']);
     }
 }
@@ -41,8 +46,12 @@ if (Config::get('AZ_CLIENT_ID') !== '') {
         echo '<input type="submit" name="ad_revert" id="ad_revert" class="btn btn-primary" value="Play the song of time (revert lab)">';
     } else if ($status->status === "Reverting") {
         echo '<input type="submit" name="ad_revert" id="ad_revert" class="btn btn-primary" value="Play the song of time (revert lab)" disabled>';
-    } else {
+    } else if ($status->status === "Stopped") {
         echo '<input type="submit" name="ad_start" id="ad_start" class="btn btn-primary" value="Turn on Nintendo">';
+    } else if ($status->status === "Starting") {
+        echo '<input type="submit" name="ad_start" id="ad_start" class="btn btn-primary" value="Turn on Nintendo" disabled>';
+    } else {
+        echo '<input type="submit" name="ad_init" id="ad_init" class="btn btn-primary" value="Turn on Nintendo">';
     }
     echo '
     </form>
@@ -63,8 +72,14 @@ if (Config::get('AZ_CLIENT_ID') !== '') {
         case 'Reverting':
             echo "The song of time has been played - your progress has not been saved, and time is turning back to the start of day 0!";
             break;
+        case 'Stopped':
+            echo "Offline (your progress has been saved, Turn on the Nintendo to pick up where you left off).";
+            break;
+        case 'Starting':
+            echo "N64 is booting back up, won't be long before you get your mimika- er, Ocarina";
+            break;
         default:
-            echo "error, too much Donkey Kong, not enough Banjo Kazooie (please ask an organiser why this happened)";
+            echo "error, too much Donkey Kong, not enough Banjo Kazooie (please ask an organiser why this happened). [$status->status]";
             break;
     }
     echo "</p>";

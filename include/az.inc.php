@@ -49,6 +49,7 @@ function az_revert_env($teamid)
 {
   //check status first, don't send req if status indicates it's reverting already
   $stats = az_get_team_status($teamid);
+  //message_inline_red($stats->status);
   //NULL means the status get failed, so same outcome as it being already requested. Don't send request.
   if ($stats !== NULL && $stats->status === 'Ready') {
     try {
@@ -72,8 +73,8 @@ function az_revert_env($teamid)
           ),
         )
       );
-      // curl_setopt($curl, CURLINFO_HEADER_OUT, true);
-      // curl_setopt($curl, CURLOPT_VERBOSE, true);
+      curl_setopt($curl, CURLINFO_HEADER_OUT, true);
+      curl_setopt($curl, CURLOPT_VERBOSE, true);
       curl_exec($curl);
       //if we get a 202, life is good
       $rcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
@@ -96,8 +97,10 @@ function az_create_env($teamid)
 {
   //check status first, don't send req if status indicates it's starting/started
   $stats = az_get_team_status($teamid);
+	//message_inline_red(print_r($stats));
   //NULL means the status get failed, so same outcome as it being already requested. Don't send request.
   if ($stats !== NULL && $stats->status === 'NotYetRequested') {
+	//message_inline_red("ffffff");
     try {
       $curl = curl_init();
       $tok = az_get_token();
@@ -119,8 +122,8 @@ function az_create_env($teamid)
           ),
         )
       );
-      //curl_setopt($curl, CURLINFO_HEADER_OUT, true);
-      //curl_setopt($curl, CURLOPT_VERBOSE, true);
+      curl_setopt($curl, CURLINFO_HEADER_OUT, true);
+      curl_setopt($curl, CURLOPT_VERBOSE, true);
       curl_exec($curl);
       //if we get a 202, life is good
       $rcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
@@ -179,5 +182,53 @@ function az_get_team_status($teamid)
     throw $e;
   }
 
+  //return false (unreachable)
+}
+
+function az_start_env($teamid)
+{
+  //check status first, don't send req if status indicates it's starting/started
+  $stats = az_get_team_status($teamid);
+  //NULL means the status get failed, so same outcome as it being already requested. Don't send request.
+  if ($stats !== NULL && $stats->status === 'NotYetRequested') {
+    try {
+      $curl = curl_init();
+      $tok = az_get_token();
+      $magicapi = Config::get('AZ_API_ADDR');
+      curl_setopt_array(
+        $curl,
+        array(
+          CURLOPT_URL => "https://$magicapi/api/Lab/$teamid/start",
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => "",
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 30,
+          CURLOPT_POSTFIELDS => "{}",
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => "POST",
+          CURLOPT_HTTPHEADER => array(
+            "content-type: application/json",
+            "Authorization: Bearer " . $tok
+          ),
+        )
+      );
+      //curl_setopt($curl, CURLINFO_HEADER_OUT, true);
+      //curl_setopt($curl, CURLOPT_VERBOSE, true);
+      curl_exec($curl);
+      //if we get a 202, life is good
+      $rcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+      //message_inline_red(print_r(curl_getinfo($curl)));
+      curl_close($curl);
+      if ($rcode === 202) {
+        return true;
+      }
+
+      return false;
+
+    } catch (Exception $e) {
+      message_inline_red('Caught exception creating az env');
+      throw $e;
+    }
+  }
   //return false (unreachable)
 }
