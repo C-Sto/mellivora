@@ -190,7 +190,7 @@ function az_start_env($teamid)
   //check status first, don't send req if status indicates it's starting/started
   $stats = az_get_team_status($teamid);
   //NULL means the status get failed, so same outcome as it being already requested. Don't send request.
-  if ($stats !== NULL && $stats->status === 'NotYetRequested') {
+  if ($stats !== NULL && $stats->status === 'Stopped') {
     try {
       $curl = curl_init();
       $tok = az_get_token();
