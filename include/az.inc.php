@@ -73,8 +73,8 @@ function az_revert_env($teamid)
           ),
         )
       );
-      curl_setopt($curl, CURLINFO_HEADER_OUT, true);
-      curl_setopt($curl, CURLOPT_VERBOSE, true);
+      //curl_setopt($curl, CURLINFO_HEADER_OUT, true);
+      //curl_setopt($curl, CURLOPT_VERBOSE, true);
       curl_exec($curl);
       //if we get a 202, life is good
       $rcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
@@ -122,8 +122,8 @@ function az_create_env($teamid)
           ),
         )
       );
-      curl_setopt($curl, CURLINFO_HEADER_OUT, true);
-      curl_setopt($curl, CURLOPT_VERBOSE, true);
+      //curl_setopt($curl, CURLINFO_HEADER_OUT, true);
+      //curl_setopt($curl, CURLOPT_VERBOSE, true);
       curl_exec($curl);
       //if we get a 202, life is good
       $rcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
